@@ -238,18 +238,71 @@ header .subtitle {
   color: var(--ink);
 }
 
-/* barra roja inferior, como "INSIDE: EXCLUSIVE BUGLE PICS..." */
-.post-date {
+/* barra roja inferior, ahora con fecha + acciones */
+.post-footer {
   margin-top: 10px;
   padding: 7px 12px;
   background: var(--red);
   color: #fff;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.post-date {
   font-family: 'Oswald', sans-serif;
   font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  border-top: 2px solid var(--ink);
+}
+.post-footer-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.link-btn.danger {
+  color: #1a1a1a;
+}
+
+/* --- Modo edición de descripción --- */
+.post-edit {
+  padding: 10px 12px 4px;
+}
+.post-edit textarea {
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: #fff;
+  padding: 8px;
+  font-family: 'PT Serif', serif;
+  font-size: 14px;
+  resize: none;
+}
+.post-edit-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+}
+.post-edit-actions .link-btn {
+  color: var(--red-dark);
 }
 
 .empty {
