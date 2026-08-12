@@ -14,7 +14,8 @@ function onUploaded() {
 <template>
   <div class="app">
     <header>
-      <h1>Nosotros ❤️</h1>
+      <h1>Nosotros</h1>
+      <div class="subtitle">un tablero de nuestros recuerdos</div>
     </header>
     <UploadForm @uploaded="onUploaded" />
     <Gallery :key="refreshKey" />
