@@ -1,11 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { RAW_BASE } from '../config.js'
 
 const photos = ref([])
 const loading = ref(true)
 const refreshing = ref(false)
 const imgVersion = ref(Date.now())
+const postRefs = ref({})
 
 const editingFilename = ref(null)
 const editText = ref('')
@@ -36,6 +37,18 @@ async function loadPhotos(isRefresh = false) {
 }
 
 onMounted(() => loadPhotos())
+
+function setPostRef(filename, el) {
+  if (el) postRefs.value[filename] = el
+}
+
+function goToPhoto(photo) {
+  viewMode.value = 'list'
+  nextTick(() => {
+    const el = postRefs.value[photo.filename]
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  })
+}
 
 function startEdit(photo) {
   editingFilename.value = photo.filename
@@ -128,13 +141,13 @@ async function deletePhoto(photo) {
         :src="`${RAW_BASE}/fotos/${photo.filename}?t=${imgVersion}`"
         :alt="photo.caption"
         loading="lazy"
-        @click="viewMode = 'list'"
+        @click="goToPhoto(photo)"
       />
     </div>
 
     <!-- Vista en fila: la tarjeta completa con edición y eliminación -->
     <div v-else>
-      <div v-for="photo in photos" :key="photo.filename" class="post">
+      <div v-for="photo in photos" :key="photo.filename" class="post" :ref="el => setPostRef(photo.filename, el)">
         <img :src="`${RAW_BASE}/fotos/${photo.filename}?t=${imgVersion}`" :alt="photo.caption" loading="lazy" />
 
         <div v-if="editingFilename === photo.filename" class="post-edit">
