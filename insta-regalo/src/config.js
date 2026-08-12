@@ -8,6 +8,5 @@ export const GITHUB_BRANCH = 'main'
 export const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`
 
 // ---- Textos del "periódico" — edita esto para personalizarlo ----
-export const MASTHEAD_TOPLINE = 'ULTIMA HORA · EDICION FAMILIAR · TOMO I'
-export const MASTHEAD_TITLE = 'EL VIGIA'
+export const MASTHEAD_TOPLINE = 'ULTIMA HORA · EDICION FAMILIA UNIVERSITARIA · 2026'
 export const MASTHEAD_HEADLINE = 'NOSOTROS'

@@ -56,9 +56,9 @@ header {
 /* logo/imagen del masthead, en vez del nombre en texto */
 .masthead-img {
   display: block;
-  max-width: 100%;
-  max-height: 90px;
-  margin: 0 auto;
+  width: calc(100% + 28px);
+  height: auto;
+  margin: 0 -14px;
   border-top: 3px solid var(--ink);
   border-bottom: 3px solid var(--ink);
 }
@@ -69,7 +69,7 @@ header .subtitle {
   font-family: 'Anton', 'Oswald', sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 30px;
+  font-size: 100px;
   line-height: 1;
   letter-spacing: 0.5px;
   text-transform: uppercase;
