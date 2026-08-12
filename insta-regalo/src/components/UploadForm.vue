@@ -1,17 +1,26 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const emit = defineEmits(['uploaded'])
 
 const file = ref(null)
+const previewUrl = ref(null)
 const caption = ref('')
 const uploader = ref(localStorage.getItem('uploader_name') || '')
 const passcode = ref('')
 const uploading = ref(false)
 const statusMsg = ref('')
+const fileInput = ref(null)
+
+function openFilePicker() {
+  fileInput.value?.click()
+}
 
 function onFileChange(e) {
-  file.value = e.target.files[0] || null
+  const f = e.target.files[0] || null
+  file.value = f
+  if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
+  previewUrl.value = f ? URL.createObjectURL(f) : null
 }
 
 function toBase64(f) {
@@ -55,6 +64,8 @@ async function submit() {
 
     statusMsg.value = '¡Foto subida! 🎉'
     file.value = null
+    if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
+    previewUrl.value = null
     caption.value = ''
     emit('uploaded')
   } catch (e) {
@@ -67,9 +78,28 @@ async function submit() {
 
 <template>
   <div class="upload-box">
-    <input type="text" v-model="uploader" placeholder="Tu nombre" style="width:100%;margin-bottom:8px;padding:8px;border:1px solid #dbdbdb;border-radius:8px;" />
-    <input type="password" v-model="passcode" placeholder="Clave secreta" style="width:100%;margin-bottom:8px;padding:8px;border:1px solid #dbdbdb;border-radius:8px;" />
-    <input type="file" accept="image/*" @change="onFileChange" />
+    <input type="text" v-model="uploader" placeholder="Tu nombre" />
+    <input type="password" v-model="passcode" placeholder="Clave secreta" />
+
+    <input
+      ref="fileInput"
+      type="file"
+      accept="image/*"
+      class="file-input-hidden"
+      @change="onFileChange"
+    />
+
+    <div class="dropzone" :class="{ 'has-image': previewUrl }" @click="openFilePicker">
+      <img v-if="previewUrl" :src="previewUrl" class="dropzone-preview" alt="Vista previa" />
+      <template v-else>
+        <div class="dropzone-icon">⇪</div>
+        <div class="dropzone-text">Carga una imagen</div>
+      </template>
+    </div>
+    <button type="button" class="pick-btn" @click="openFilePicker">
+      {{ file ? 'Cambiar imagen' : 'Buscar una imagen' }}
+    </button>
+
     <textarea v-model="caption" placeholder="Escribe algo sobre esta foto..." rows="2"></textarea>
     <button :disabled="uploading" @click="submit">
       {{ uploading ? 'Subiendo...' : 'Publicar foto' }}
