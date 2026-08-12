@@ -1,12 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import UploadForm from './components/UploadForm.vue'
 import Gallery from './components/Gallery.vue'
+import { MASTHEAD_TOPLINE, MASTHEAD_TITLE, MASTHEAD_HEADLINE } from './config.js'
 
 const refreshKey = ref(0)
 
 function onUploaded() {
-  // Fuerza a la galería a recargar fotos.json tras subir una nueva
   refreshKey.value++
 }
 </script>
@@ -14,8 +14,9 @@ function onUploaded() {
 <template>
   <div class="app">
     <header>
-      <h1>Nosotros</h1>
-      <div class="subtitle">un tablero de nuestros recuerdos</div>
+      <div class="topline">{{ MASTHEAD_TOPLINE }}</div>
+      <h1>{{ MASTHEAD_TITLE }}</h1>
+      <div class="subtitle">{{ MASTHEAD_HEADLINE }}</div>
     </header>
     <UploadForm @uploaded="onUploaded" />
     <Gallery :key="refreshKey" />

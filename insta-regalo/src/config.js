@@ -6,3 +6,8 @@ export const GITHUB_BRANCH = 'main'
 
 // URL base para leer las fotos directamente de GitHub (rápido, gratis, sin backend)
 export const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`
+
+// ---- Textos del "periódico" — edita esto para personalizarlo ----
+export const MASTHEAD_TOPLINE = 'ULTIMA HORA · EDICION FAMILIAR · TOMO I'
+export const MASTHEAD_TITLE = 'EL VIGIA'
+export const MASTHEAD_HEADLINE = 'NOSOTROS'

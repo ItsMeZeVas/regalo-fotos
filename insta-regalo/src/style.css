@@ -39,8 +39,7 @@ header {
 }
 
 /* fila de titulares pequeños arriba, como "PAGE 3 / PAGE 8" */
-header::before {
-  content: "ÚLTIMA HORA • EDICIÓN FAMILIAR • TOMO I";
+.topline {
   display: block;
   font-family: 'Oswald', sans-serif;
   font-size: 10px;
