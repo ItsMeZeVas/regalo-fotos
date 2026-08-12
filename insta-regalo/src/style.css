@@ -1,22 +1,20 @@
-/* ---- Tema "vigilante amistoso": rojo/azul, telarañas y puntos de cómic ---- */
+/* ---- Tema "Periódico Vintage" — blanco y negro, halftone y tipografía de diario ---- */
 * { box-sizing: border-box; }
 
 :root {
-  --red: #d81e2c;
-  --red-dark: #a3131f;
-  --blue: #1b3f9e;
-  --blue-dark: #0f2a72;
-  --ink: #0e0e0e;
-  --paper: #fdfdfb;
-  --accent: #f2c230;
+  --ink: #1a1a1a;
+  --paper: #f4f1e8;
+  --paper-dark: #e8e3d3;
+  --red: #b91c26;
+  --gray: #6b6b6b;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'PT Serif', Georgia, serif;
   background:
-    radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px) 0 0/16px 16px,
-    linear-gradient(160deg, var(--red) 0%, var(--red-dark) 55%, var(--blue-dark) 100%);
+    radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px) 0 0/6px 6px,
+    var(--paper);
   color: var(--ink);
   min-height: 100vh;
 }
@@ -27,101 +25,153 @@ body {
   min-height: 100vh;
   padding-bottom: 24px;
   position: relative;
+  background: var(--paper);
+  border-left: 1px solid rgba(0,0,0,0.08);
+  border-right: 1px solid rgba(0,0,0,0.08);
 }
 
-/* Telaraña sutil en el fondo del header, dibujada en CSS (sin logos ni personajes) */
+/* --- Masthead estilo cabecera de diario --- */
 header {
-  padding: 36px 16px 16px;
+  padding: 18px 16px 10px;
   text-align: center;
   position: relative;
-  background-image:
-    repeating-linear-gradient(0deg, transparent 0 18px, rgba(255,255,255,0.12) 18px 19px),
-    repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,0.12) 18px 19px),
-    repeating-radial-gradient(circle at 50% -20%, transparent 0 26px, rgba(255,255,255,0.1) 26px 27px);
-  border-bottom: 4px solid var(--ink);
+  border-bottom: 6px double var(--ink);
+}
+header::before {
+  content: "EDICIÓN FAMILIAR \2014 TOMO I";
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 3px 0;
+  margin-bottom: 10px;
 }
 header h1 {
   margin: 0;
-  font-family: 'Bangers', cursive;
-  font-size: 52px;
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 58px;
+  line-height: 0.95;
   letter-spacing: 1px;
-  color: var(--accent);
-  -webkit-text-stroke: 2px var(--ink);
-  text-shadow: 3px 3px 0 var(--blue-dark);
-  transform: rotate(-2deg);
+  color: var(--ink);
+  text-transform: uppercase;
 }
 header .subtitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
-  margin-top: 2px;
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--ink);
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+header .subtitle::before,
+header .subtitle::after {
+  content: "\2014";
+  margin: 0 8px;
+  color: var(--gray);
 }
 
-/* --- Ficha de subida estilo "boletín de misión" --- */
+/* --- Ficha de subida estilo "clasificados" --- */
 .upload-box {
   margin: 18px;
   padding: 16px;
+  background: var(--paper-dark);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+  position: relative;
+}
+.upload-box::before {
+  content: "PUBLIQUE SU FOTO";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--paper);
-  border-radius: 6px;
-  border: 3px solid var(--ink);
-  box-shadow: 5px 5px 0 var(--blue-dark);
+  padding: 0 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .upload-box input[type="text"],
 .upload-box input[type="password"] {
   width: 100%;
   margin-bottom: 8px;
   padding: 9px;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  font-family: 'Inter', sans-serif;
+  border: none;
+  border-bottom: 2px solid var(--ink);
+  background: transparent;
+  border-radius: 0;
+  font-family: 'PT Serif', serif;
   font-size: 14px;
+}
+.upload-box input[type="text"]:focus,
+.upload-box input[type="password"]:focus {
+  outline: none;
+  border-bottom-color: var(--red);
 }
 .upload-box input[type="file"] {
   width: 100%;
   margin-bottom: 8px;
-  font-size: 13px;
+  font-size: 12px;
+  font-family: 'Oswald', sans-serif;
 }
 .upload-box textarea {
   width: 100%;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
+  border: none;
+  border-bottom: 2px solid var(--ink);
+  background: transparent;
+  border-radius: 0;
   padding: 9px;
   resize: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'PT Serif', serif;
+  font-style: italic;
   font-size: 14px;
+}
+.upload-box textarea:focus {
+  outline: none;
+  border-bottom-color: var(--red);
 }
 .upload-box button {
   margin-top: 10px;
   width: 100%;
-  padding: 11px;
+  padding: 12px;
   border: 2px solid var(--ink);
-  border-radius: 4px;
-  background: var(--blue);
-  color: #fff;
-  font-family: 'Bangers', cursive;
-  font-size: 18px;
-  letter-spacing: 1px;
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 .upload-box button:hover:not(:disabled) {
-  transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
 }
 .upload-box button:disabled {
-  background: #9fb1de;
-  box-shadow: none;
+  background: #b8b8b8;
+  border-color: #b8b8b8;
   cursor: not-allowed;
 }
 .status {
-  font-size: 13px;
-  margin-top: 6px;
-  color: var(--blue-dark);
+  font-size: 12px;
+  margin-top: 8px;
+  color: var(--red);
+  font-family: 'Oswald', sans-serif;
   font-weight: 600;
+  letter-spacing: 0.03em;
 }
 
 .refresh-bar {
@@ -130,77 +180,98 @@ header .subtitle {
   padding: 10px 16px 0;
 }
 .refresh-btn {
-  padding: 8px 18px;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  background: var(--paper);
+  padding: 7px 20px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 2px 2px 0 var(--ink);
+}
+.refresh-btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
 }
 .refresh-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
-/* --- Cada foto como una viñeta de cómic --- */
+/* --- Cada foto como recorte de primera plana --- */
 .post {
-  margin: 22px 18px;
+  margin: 26px 18px;
   background: var(--paper);
-  border: 3px solid var(--ink);
-  border-radius: 4px;
-  box-shadow: 6px 6px 0 var(--ink);
-  overflow: hidden;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  padding-top: 10px;
+  position: relative;
 }
 .post-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
-  padding: 8px 12px;
-  background: var(--blue);
-  color: #fff;
-  font-family: 'Bangers', cursive;
-  font-size: 18px;
+  padding: 0 2px 8px;
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 24px;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 10px;
+}
+.post-header::before {
+  content: "\2605";
+  color: var(--red);
+  font-size: 14px;
 }
 .post img {
   width: 100%;
   display: block;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-top: 3px solid var(--ink);
-  border-bottom: 3px solid var(--ink);
+  filter: grayscale(1) contrast(1.15);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
 }
 .post-caption {
-  font-family: 'Inter', sans-serif;
+  font-family: 'PT Serif', serif;
   font-size: 14px;
-  line-height: 1.4;
-  padding: 10px 12px 2px;
+  line-height: 1.5;
+  padding: 10px 4px 2px;
   color: var(--ink);
+  column-gap: 14px;
 }
 .post-caption b {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.05em;
   margin-right: 6px;
-  color: var(--red-dark);
+  color: var(--red);
 }
 .post-date {
-  padding: 0 12px 12px;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  color: #8a8a8a;
+  padding: 4px 4px 12px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  color: var(--gray);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
+  border-top: 1px dotted var(--gray);
+  margin-top: 6px;
+  padding-top: 6px;
 }
 
 .empty {
   padding: 60px 20px;
   text-align: center;
-  font-family: 'Bangers', cursive;
-  font-size: 26px;
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 24px;
   letter-spacing: 1px;
-  color: var(--accent);
-  -webkit-text-stroke: 1px var(--ink);
+  text-transform: uppercase;
+  color: var(--gray);
 }
