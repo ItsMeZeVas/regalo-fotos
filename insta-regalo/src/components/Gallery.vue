@@ -10,6 +10,7 @@ const imgVersion = ref(Date.now())
 const editingFilename = ref(null)
 const editText = ref('')
 const busyFilename = ref(null) // foto que se está editando/borrando en el servidor
+const viewMode = ref('list') // 'list' | 'grid'
 
 async function loadPhotos(isRefresh = false) {
   if (isRefresh) {
@@ -99,11 +100,39 @@ async function deletePhoto(photo) {
       <button class="refresh-btn" :disabled="refreshing" @click="loadPhotos(true)">
         {{ refreshing ? 'Actualizando...' : '↻ Actualizar' }}
       </button>
+      <div class="view-toggle">
+        <button
+          class="view-btn"
+          :class="{ active: viewMode === 'list' }"
+          @click="viewMode = 'list'"
+          aria-label="Ver en fila"
+        >☰</button>
+        <button
+          class="view-btn"
+          :class="{ active: viewMode === 'grid' }"
+          @click="viewMode = 'grid'"
+          aria-label="Ver en cuadrícula"
+        >▦</button>
+      </div>
     </div>
     <div v-if="loading" class="empty">Cargando recuerdos...</div>
     <div v-else-if="photos.length === 0" class="empty">
       Todavía no hay fotos. ¡Sube la primera! 📸
     </div>
+
+    <!-- Vista en cuadrícula: solo fotos, sin acciones -->
+    <div v-else-if="viewMode === 'grid'" class="posts-grid">
+      <img
+        v-for="photo in photos"
+        :key="photo.filename"
+        :src="`${RAW_BASE}/fotos/${photo.filename}?t=${imgVersion}`"
+        :alt="photo.caption"
+        loading="lazy"
+        @click="viewMode = 'list'"
+      />
+    </div>
+
+    <!-- Vista en fila: la tarjeta completa con edición y eliminación -->
     <div v-else>
       <div v-for="photo in photos" :key="photo.filename" class="post">
         <img :src="`${RAW_BASE}/fotos/${photo.filename}?t=${imgVersion}`" :alt="photo.caption" loading="lazy" />
