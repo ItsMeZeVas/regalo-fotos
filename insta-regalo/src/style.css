@@ -1,11 +1,12 @@
-/* ---- Tema "Periódico Vintage" — blanco y negro, halftone y tipografía de diario ---- */
+/* ---- Tema "Extra, Extra" — periódico sensacionalista rojo/negro, fotos a color ---- */
 * { box-sizing: border-box; }
 
 :root {
-  --ink: #1a1a1a;
-  --paper: #f4f1e8;
-  --paper-dark: #e8e3d3;
-  --red: #b91c26;
+  --ink: #111111;
+  --paper: #f2ede0;
+  --paper-dark: #e6dfc9;
+  --red: #d81f26;
+  --red-dark: #a2161c;
   --gray: #6b6b6b;
 }
 
@@ -26,54 +27,65 @@ body {
   padding-bottom: 24px;
   position: relative;
   background: var(--paper);
-  border-left: 1px solid rgba(0,0,0,0.08);
-  border-right: 1px solid rgba(0,0,0,0.08);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
 }
 
-/* --- Masthead estilo cabecera de diario --- */
+/* --- Masthead estilo "Daily Bugle" --- */
 header {
-  padding: 18px 16px 10px;
+  padding: 14px 14px 0;
   text-align: center;
   position: relative;
-  border-bottom: 6px double var(--ink);
 }
+
+/* fila de titulares pequeños arriba, como "PAGE 3 / PAGE 8" */
 header::before {
-  content: "EDICIÓN FAMILIAR \2014 TOMO I";
+  content: "ÚLTIMA HORA • EDICIÓN FAMILIAR • TOMO I";
   display: block;
   font-family: 'Oswald', sans-serif;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gray);
-  border-top: 1px solid var(--ink);
+  color: var(--ink);
+  border-top: 2px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  padding: 3px 0;
-  margin-bottom: 10px;
+  padding: 4px 0;
+  margin-bottom: 8px;
 }
+
+/* barra roja con el nombre del sitio, como "DAILY BUGLE" */
 header h1 {
   margin: 0;
+  padding: 8px 6px;
+  background: var(--red);
+  color: #fff;
   font-family: 'Anton', 'Oswald', sans-serif;
-  font-size: 58px;
-  line-height: 0.95;
+  font-size: 40px;
+  line-height: 1;
   letter-spacing: 1px;
-  color: var(--ink);
   text-transform: uppercase;
+  -webkit-text-stroke: 1.5px var(--ink);
+  text-shadow:
+    2px 2px 0 var(--ink),
+    -1px -1px 0 var(--ink);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
 }
+
+/* titular negro enorme, como "WANTED!" */
 header .subtitle {
-  font-family: 'PT Serif', serif;
-  font-style: italic;
+  display: block;
+  font-family: 'Anton', 'Oswald', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-style: normal;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
   color: var(--ink);
-  margin-top: 4px;
-  letter-spacing: 0.02em;
-}
-header .subtitle::before,
-header .subtitle::after {
-  content: "\2014";
-  margin: 0 8px;
-  color: var(--gray);
+  padding: 10px 4px 12px;
+  border-bottom: 4px solid var(--ink);
 }
 
 /* --- Ficha de subida estilo "clasificados" --- */
@@ -168,7 +180,7 @@ header .subtitle::after {
 .status {
   font-size: 12px;
   margin-top: 8px;
-  color: var(--red);
+  color: var(--red-dark);
   font-family: 'Oswald', sans-serif;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -201,76 +213,82 @@ header .subtitle::after {
   cursor: not-allowed;
 }
 
-/* --- Cada foto como recorte de primera plana --- */
+/* --- Cada foto como portada de "edición especial", fotos a color --- */
 .post {
-  margin: 26px 18px;
+  margin: 28px 18px;
   background: var(--paper);
-  border-top: 3px solid var(--ink);
-  border-bottom: 3px solid var(--ink);
-  padding-top: 10px;
+  border: 1px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  overflow: hidden;
   position: relative;
 }
-.post-header {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding: 0 2px 8px;
-  font-family: 'Anton', 'Oswald', sans-serif;
-  font-size: 24px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-  margin-bottom: 10px;
-}
-.post-header::before {
-  content: "\2605";
-  color: var(--red);
-  font-size: 14px;
-}
+
+/* contenedor de la imagen, a color, sin filtro */
 .post img {
   width: 100%;
   display: block;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.15);
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
 }
+
+/* el nombre se convierte en la cinta diagonal roja "SPECIAL EDITION" */
+.post-header {
+  position: absolute;
+  top: 26px;
+  right: -46px;
+  width: 190px;
+  padding: 5px 0;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  transform: rotate(35deg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  border-top: 1px solid rgba(255,255,255,0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+  z-index: 2;
+}
+
 .post-caption {
   font-family: 'PT Serif', serif;
   font-size: 14px;
   line-height: 1.5;
-  padding: 10px 4px 2px;
+  padding: 12px 12px 4px;
   color: var(--ink);
-  column-gap: 14px;
 }
 .post-caption b {
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  margin-right: 6px;
+  color: var(--ink);
+}
+
+/* barra roja inferior, como "INSIDE: EXCLUSIVE BUGLE PICS..." */
+.post-date {
+  margin-top: 10px;
+  padding: 7px 12px;
+  background: var(--red);
+  color: #fff;
   font-family: 'Oswald', sans-serif;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.05em;
-  margin-right: 6px;
-  color: var(--red);
-}
-.post-date {
-  padding: 4px 4px 12px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 10px;
-  color: var(--gray);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-top: 1px dotted var(--gray);
-  margin-top: 6px;
-  padding-top: 6px;
+  letter-spacing: 0.09em;
+  border-top: 2px solid var(--ink);
 }
 
 .empty {
   padding: 60px 20px;
   text-align: center;
   font-family: 'Anton', 'Oswald', sans-serif;
-  font-size: 24px;
+  font-size: 26px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--gray);
