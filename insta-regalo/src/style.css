@@ -1,24 +1,22 @@
-/* ---- Tablero de corcho con recuerdos tipo polaroid ---- */
+/* ---- Tema "vigilante amistoso": rojo/azul, telarañas y puntos de cómic ---- */
 * { box-sizing: border-box; }
 
 :root {
-  --cork: #4a3423;
-  --cork-dark: #3a2a1c;
-  --paper: #fdfbf7;
-  --paper-shadow: rgba(0,0,0,0.35);
-  --pin: #d94f4f;
-  --ink: #2b2320;
-  --ink-soft: #6b5d52;
-  --accent: #e8a33d;
+  --red: #d81e2c;
+  --red-dark: #a3131f;
+  --blue: #1b3f9e;
+  --blue-dark: #0f2a72;
+  --ink: #0e0e0e;
+  --paper: #fdfdfb;
+  --accent: #f2c230;
 }
 
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background:
-    radial-gradient(circle at 20% 10%, rgba(0,0,0,0.15), transparent 40%),
-    radial-gradient(circle at 80% 60%, rgba(0,0,0,0.12), transparent 40%),
-    repeating-linear-gradient(45deg, var(--cork) 0px, var(--cork) 2px, var(--cork-dark) 2px, var(--cork-dark) 4px);
+    radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px) 0 0/16px 16px,
+    linear-gradient(160deg, var(--red) 0%, var(--red-dark) 55%, var(--blue-dark) 100%);
   color: var(--ink);
   min-height: 100vh;
 }
@@ -28,56 +26,55 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   padding-bottom: 24px;
+  position: relative;
 }
 
+/* Telaraña sutil en el fondo del header, dibujada en CSS (sin logos ni personajes) */
 header {
-  padding: 32px 16px 12px;
+  padding: 36px 16px 16px;
   text-align: center;
+  position: relative;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 18px, rgba(255,255,255,0.12) 18px 19px),
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,0.12) 18px 19px),
+    repeating-radial-gradient(circle at 50% -20%, transparent 0 26px, rgba(255,255,255,0.1) 26px 27px);
+  border-bottom: 4px solid var(--ink);
 }
 header h1 {
   margin: 0;
-  font-family: 'Caveat', cursive;
-  font-size: 44px;
-  font-weight: 700;
-  color: var(--paper);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  font-family: 'Bangers', cursive;
+  font-size: 52px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  -webkit-text-stroke: 2px var(--ink);
+  text-shadow: 3px 3px 0 var(--blue-dark);
   transform: rotate(-2deg);
 }
 header .subtitle {
-  font-family: 'Caveat', cursive;
-  font-size: 18px;
-  color: var(--accent);
-  margin-top: -4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 2px;
 }
 
-/* --- Ficha de subida, como una nota pinchada --- */
+/* --- Ficha de subida estilo "boletín de misión" --- */
 .upload-box {
-  margin: 16px;
+  margin: 18px;
   padding: 16px;
   background: var(--paper);
-  border-radius: 4px;
-  box-shadow: 0 8px 20px var(--paper-shadow);
-  position: relative;
-  transform: rotate(-1deg);
-}
-.upload-box::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 16px;
-  background: var(--pin);
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  border: 3px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--blue-dark);
 }
 .upload-box input[type="text"],
 .upload-box input[type="password"] {
   width: 100%;
   margin-bottom: 8px;
-  padding: 8px;
-  border: 1px solid #e0dad0;
+  padding: 9px;
+  border: 2px solid var(--ink);
   border-radius: 4px;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
@@ -89,95 +86,111 @@ header .subtitle {
 }
 .upload-box textarea {
   width: 100%;
-  border: 1px solid #e0dad0;
+  border: 2px solid var(--ink);
   border-radius: 4px;
-  padding: 8px;
+  padding: 9px;
   resize: none;
-  font-family: 'Caveat', cursive;
-  font-size: 18px;
-  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
 }
 .upload-box button {
   margin-top: 10px;
   width: 100%;
-  padding: 10px;
-  border: none;
+  padding: 11px;
+  border: 2px solid var(--ink);
   border-radius: 4px;
-  background: var(--accent);
-  color: #2b2320;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  background: var(--blue);
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 .upload-box button:hover:not(:disabled) {
-  transform: translateY(-1px);
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--ink);
 }
 .upload-box button:disabled {
-  background: #d8c9a3;
+  background: #9fb1de;
+  box-shadow: none;
   cursor: not-allowed;
 }
 .status {
   font-size: 13px;
   margin-top: 6px;
-  color: var(--ink-soft);
+  color: var(--blue-dark);
+  font-weight: 600;
 }
 
-/* --- Cada foto como una polaroid pinchada, alternando inclinación --- */
-.post {
-  margin: 28px 20px;
+.refresh-bar {
+  display: flex;
+  justify-content: center;
+  padding: 10px 16px 0;
+}
+.refresh-btn {
+  padding: 8px 18px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
   background: var(--paper);
-  padding: 12px 12px 4px;
-  border-radius: 2px;
-  box-shadow: 0 10px 24px var(--paper-shadow);
-  position: relative;
-  transform: rotate(1.5deg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
 }
-.post:nth-child(even) {
-  transform: rotate(-1.8deg);
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
 }
-.post::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 16px;
-  background: var(--pin);
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+
+/* --- Cada foto como una viñeta de cómic --- */
+.post {
+  margin: 22px 18px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
 }
 .post-header {
-  font-family: 'Caveat', cursive;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--blue);
+  color: #fff;
+  font-family: 'Bangers', cursive;
   font-size: 18px;
-  font-weight: 700;
-  color: var(--ink-soft);
-  padding: 4px 4px 8px;
+  letter-spacing: 0.5px;
 }
 .post img {
   width: 100%;
   display: block;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border: 1px solid #eee;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
 }
 .post-caption {
-  font-family: 'Caveat', cursive;
-  font-size: 20px;
-  line-height: 1.3;
-  padding: 10px 6px 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 10px 12px 2px;
   color: var(--ink);
 }
 .post-caption b {
   margin-right: 6px;
-  color: var(--pin);
+  color: var(--red-dark);
 }
 .post-date {
-  padding: 0 6px 14px;
+  padding: 0 12px 12px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
-  color: var(--ink-soft);
+  color: #8a8a8a;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -185,7 +198,9 @@ header .subtitle {
 .empty {
   padding: 60px 20px;
   text-align: center;
-  font-family: 'Caveat', cursive;
-  font-size: 24px;
-  color: var(--paper);
+  font-family: 'Bangers', cursive;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  -webkit-text-stroke: 1px var(--ink);
 }
