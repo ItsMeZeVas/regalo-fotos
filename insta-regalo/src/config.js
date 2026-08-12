@@ -8,7 +8,7 @@ export const GITHUB_BRANCH = 'main'
 export const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`
 
 // ---- Textos del "periódico" — edita esto para personalizarlo ----
-export const MASTHEAD_TOPLINE = 'ULTIMA HORA · EDICION FAMILIA UNIVERSITARIA · 2026'
+export const MASTHEAD_TOPLINE = 'ÚLTIMA HORA · EDICIÓN FAMILIA UNIVERSITARIA · 2026'
 export const MASTHEAD_HEADLINE = 'RECUERDOS'
 
 // ---- Mensaje especial que aparece de vez en cuando en una burbuja ----
