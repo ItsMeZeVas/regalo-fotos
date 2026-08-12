@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import UploadForm from './components/UploadForm.vue'
 import Gallery from './components/Gallery.vue'
-import { MASTHEAD_TOPLINE, MASTHEAD_TITLE, MASTHEAD_HEADLINE } from './config.js'
+import { MASTHEAD_TOPLINE, MASTHEAD_HEADLINE } from './config.js'
 
 const refreshKey = ref(0)
 
@@ -15,7 +15,7 @@ function onUploaded() {
   <div class="app">
     <header>
       <div class="topline">{{ MASTHEAD_TOPLINE }}</div>
-      <h1>{{ MASTHEAD_TITLE }}</h1>
+      <img class="masthead-img" src="/masthead-logo.png" alt="Nosotros" />
       <div class="subtitle">{{ MASTHEAD_HEADLINE }}</div>
     </header>
     <UploadForm @uploaded="onUploaded" />

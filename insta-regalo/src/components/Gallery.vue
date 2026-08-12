@@ -48,7 +48,6 @@ onMounted(() => loadPhotos())
     </div>
     <div v-else>
       <div v-for="photo in photos" :key="photo.filename" class="post">
-        <div class="post-header">{{ photo.uploader || 'Anónimo' }}</div>
         <img :src="`${RAW_BASE}/fotos/${photo.filename}?t=${imgVersion}`" :alt="photo.caption" loading="lazy" />
         <div class="post-caption" v-if="photo.caption">
           <b>{{ photo.uploader || 'Anónimo' }}</b>{{ photo.caption }}
