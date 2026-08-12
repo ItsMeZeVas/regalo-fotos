@@ -10,3 +10,7 @@ export const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GIT
 // ---- Textos del "periódico" — edita esto para personalizarlo ----
 export const MASTHEAD_TOPLINE = 'ULTIMA HORA · EDICION FAMILIA UNIVERSITARIA · 2026'
 export const MASTHEAD_HEADLINE = 'RECUERDOS'
+
+// ---- Mensaje especial que aparece de vez en cuando en una burbuja ----
+export const EXTRA_MESSAGE_TITLE = 'EDICIÓN DE ÚLTIMA HORA'
+export const EXTRA_MESSAGE_BODY = 'Escribe aquí el mensaje que quieras que tu amigo lea cuando toque la burbuja.'
