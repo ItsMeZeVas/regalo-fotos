@@ -62,7 +62,7 @@ async function submit() {
       throw new Error(err.error || 'Error al subir la foto')
     }
 
-    statusMsg.value = '¡Foto enviada, esperando a que JJ Jameson las apruebe, esto puede tardar un poco!'
+    statusMsg.value = '¡Foto enviada, esperando a que JJ Jameson la apruebe, esto puede tardar un poco!'
     file.value = null
     if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
     previewUrl.value = null
