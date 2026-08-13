@@ -10,8 +10,15 @@
   --gray: #6b6b6b;
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
+  overflow-x: hidden;
+  width: 100%;
   font-family: 'PT Serif', Georgia, serif;
   background:
     radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px) 0 0/6px 6px,
@@ -29,6 +36,7 @@ body {
   background: var(--paper);
   border-left: 1px solid rgba(0,0,0,0.1);
   border-right: 1px solid rgba(0,0,0,0.1);
+  overflow-x: hidden;
 }
 
 /* --- Masthead estilo "Daily Bugle" --- */
@@ -36,21 +44,24 @@ header {
   padding: 14px 14px 0;
   text-align: center;
   position: relative;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* fila de titulares pequeños arriba, como "PAGE 3 / PAGE 8" */
 .topline {
   display: block;
   font-family: 'Oswald', sans-serif;
-  font-size: 10px;
+  font-size: clamp(8px, 2.6vw, 10px);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink);
   border-top: 2px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  padding: 4px 0;
+  padding: 4px 2px;
   margin-bottom: 8px;
+  word-break: break-word;
 }
 
 /* logo/imagen del masthead, en vez del nombre en texto */
@@ -63,19 +74,29 @@ header {
   border-bottom: 3px solid var(--ink);
 }
 
-/* titular negro enorme, como "WANTED!" */
+/* titular negro enorme, como "WANTED!" — fluido: se adapta al ancho real de pantalla */
 header .subtitle {
   display: block;
+  max-width: 100%;
   font-family: 'Anton', 'Oswald', sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 100px;
-  line-height: 1;
+  font-size: 15vw;
+  line-height: 0.95;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--ink);
   padding: 10px 4px 12px;
   border-bottom: 4px solid var(--ink);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* dentro del contenedor de 480px de ancho máximo, no crezca sin control en pantallas grandes */
+@media (min-width: 480px) {
+  header .subtitle {
+    font-size: 72px;
+  }
 }
 
 /* --- Ficha de subida estilo "clasificados" --- */
@@ -332,6 +353,8 @@ header .subtitle {
   line-height: 1.5;
   padding: 12px 12px 4px;
   color: var(--ink);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .post-caption b {
   font-family: 'Anton', 'Oswald', sans-serif;
@@ -351,9 +374,10 @@ header .subtitle {
   color: #fff;
   border-top: 2px solid var(--ink);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px 8px;
 }
 .post-date {
   font-family: 'Oswald', sans-serif;
